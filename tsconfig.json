@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "noEmitOnError": true,
+        "outDir": "./dist"
+    },
+    "include": ["src/**/*"],
+    "resolveJsonModule": true
+}
