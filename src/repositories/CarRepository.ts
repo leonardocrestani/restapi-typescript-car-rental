@@ -6,6 +6,10 @@ class CarRepository implements ICarRepository {
         return await CarSchema.find(param).limit(limit).skip(limit * (offset - 1));
     }
 
+    async findById(id: string): Promise<object> {
+        return await CarSchema.findById(id);
+    }
+
     async countVehicles(): Promise<number> {
         return await CarSchema.find().count();
     }
