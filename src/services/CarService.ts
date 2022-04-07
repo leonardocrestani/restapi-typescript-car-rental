@@ -8,6 +8,13 @@ class CarService {
         const object = Object.assign({ vehicles }, total, { limit, offset });
         return object;
     }
+
+    public async register(data: any): Promise<object> {
+        if (data.year < 1950 && data.year > 2022) {
+            throw new Error('Invalid year');
+        }
+        return await CarRepository.register(data);
+    }
 }
 
 export default new CarService();

@@ -8,8 +8,17 @@ type FindParamsType = {
     passengers?: number,
 }
 
-interface ICarRepository {
-    find(params: FindParamsType): Promise<object>
+type RegisterUpdateParamsType = {
+    model: string,
+    color: string,
+    year: number,
+    accessories: Array<object>,
+    passengers: number
 }
 
-export { ICarRepository, FindParamsType };
+interface ICarRepository {
+    find(params: FindParamsType): Promise<object>
+    register(params: RegisterUpdateParamsType): Promise<object>
+}
+
+export { ICarRepository, FindParamsType, RegisterUpdateParamsType };

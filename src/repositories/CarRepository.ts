@@ -1,5 +1,5 @@
 import CarSchema from '../schema/Car';
-import { ICarRepository, FindParamsType } from './ICarRepository';
+import { ICarRepository, FindParamsType, RegisterUpdateParamsType } from './ICarRepository';
 
 class CarRepository implements ICarRepository {
     async find({ limit, offset, ...param }: FindParamsType): Promise<object> {
@@ -8,6 +8,10 @@ class CarRepository implements ICarRepository {
 
     async countVehicles(): Promise<number> {
         return await CarSchema.find().count();
+    }
+
+    async register(data: RegisterUpdateParamsType): Promise<object> {
+        return await CarSchema.create(data);
     }
 }
 
