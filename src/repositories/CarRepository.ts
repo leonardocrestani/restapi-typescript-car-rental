@@ -1,4 +1,4 @@
-import CarSchema from '../schema/Car';
+import CarSchema from '../schemas/Car';
 import { ICarRepository, FindParamsType, RegisterUpdateParamsType } from './ICarRepository';
 
 class CarRepository implements ICarRepository {
