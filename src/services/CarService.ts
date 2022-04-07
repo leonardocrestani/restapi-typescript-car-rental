@@ -10,6 +10,18 @@ class CarService {
         return object;
     }
 
+    public async findById(id: string): Promise<object> {
+        const isValid = mongoose.Types.ObjectId.isValid(id);
+        if (!isValid) {
+            throw new Error('Id pattern does not match');
+        }
+        const car = await CarRepository.findById(id);
+        if (!car) {
+            throw new Error('Informed car not found');
+        }
+        return car;
+    }
+
     public async register(data: any): Promise<object> {
         if (data.year < 1950 && data.year > 2022) {
             throw new Error('Invalid year');
