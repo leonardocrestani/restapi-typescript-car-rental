@@ -13,14 +13,15 @@ export interface Car extends Description {
 }
 
 const carSchema = new mongoose.Schema<Car>({
-    model: {type: String, required: true},
-    color: {type: String, required: true},
-    year: {type: Number, required: true},
+    model: { type: String, required: true },
+    color: { type: String, required: true },
+    year: { type: Number, required: true },
     accessories: [Object],
-    passengers: {type: Number, required: true},
+    passengers: { type: Number, required: true },
 },
     {
-        timestamps: true
+        timestamps: true,
+        versionKey: false
     }
 );
 
