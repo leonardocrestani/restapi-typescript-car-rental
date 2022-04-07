@@ -24,6 +24,18 @@ class CarController {
         }
     }
 
+    public async update(req: Request, res: Response): Promise<Response> {
+        const { id }: any = req.params;
+        const data: object = req.body;
+        try {
+            const updatedCar = await CarService.update(id, data);
+            return res.status(200).json(updatedCar);
+        }
+        catch (error) {
+            return res.status(400).json({ message: error.message });
+        }
+    }
+
     public async remove(req: Request, res: Response): Promise<Response> {
         const { id }: any = req.params;
         try {

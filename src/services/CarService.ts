@@ -17,6 +17,21 @@ class CarService {
         return await CarRepository.register(data);
     }
 
+    public async update(id: string, data: any): Promise<object> {
+        const isValid = mongoose.Types.ObjectId.isValid(id);
+        if (!isValid) {
+            throw new Error('Id pattern does not match');
+        }
+        if (data.year < 1950 && data.year > 2022) {
+            throw new Error('Invalid year');
+        }
+        const operation = await CarRepository.update(id, data);
+        if (!operation) {
+            throw new Error('Could not update car');
+        }
+        return await CarRepository.findById(id);
+    }
+
     public async remove(id: string): Promise<void> {
         const isValid = mongoose.Types.ObjectId.isValid(id);
         if (!isValid) {

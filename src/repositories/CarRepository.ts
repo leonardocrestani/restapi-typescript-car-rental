@@ -18,6 +18,10 @@ class CarRepository implements ICarRepository {
         return await CarSchema.create(data);
     }
 
+    async update(id: string, data: RegisterUpdateParamsType): Promise<object> {
+        return await CarSchema.findOneAndUpdate({ _id: id }, data);
+    }
+
     async remove(id: string): Promise<any> {
         return await CarSchema.findOneAndDelete({ _id: id });
     }
