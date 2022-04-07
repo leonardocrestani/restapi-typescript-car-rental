@@ -1,4 +1,5 @@
 import CarRepository from '../repositories/CarRepository';
+import mongoose from 'mongoose';
 
 class CarService {
     public async find(params: any): Promise<object> {
@@ -14,6 +15,18 @@ class CarService {
             throw new Error('Invalid year');
         }
         return await CarRepository.register(data);
+    }
+
+    public async remove(id: string): Promise<void> {
+        const isValid = mongoose.Types.ObjectId.isValid(id);
+        if (!isValid) {
+            throw new Error('Id pattern does not match');
+        }
+        const operation = await CarRepository.remove(id);
+        if (!operation) {
+            throw new Error('Could not remove, client not found');
+        }
+        return;
     }
 }
 

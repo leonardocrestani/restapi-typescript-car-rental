@@ -17,6 +17,10 @@ class CarRepository implements ICarRepository {
     async register(data: RegisterUpdateParamsType): Promise<object> {
         return await CarSchema.create(data);
     }
+
+    async remove(id: string): Promise<any> {
+        return await CarSchema.findOneAndDelete({ _id: id });
+    }
 }
 
 export default new CarRepository();

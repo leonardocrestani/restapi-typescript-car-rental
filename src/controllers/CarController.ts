@@ -23,6 +23,17 @@ class CarController {
             return res.status(400).json({ message: error.message });
         }
     }
+
+    public async remove(req: Request, res: Response): Promise<Response> {
+        const { id }: any = req.params;
+        try {
+            await CarService.remove(id);
+            return res.status(204).end();
+        }
+        catch (error) {
+            return res.status(400).json({ message: error.message });
+        }
+    }
 }
 
 export default new CarController();
