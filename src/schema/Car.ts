@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
+import tableConfig from '../config/tableConfig';
 
 interface Description {
     description: string;
 }
 
-export interface Car extends Description {
+interface Car extends Description {
     model: string,
     color: string,
     year: number,
@@ -19,10 +20,7 @@ const carSchema = new mongoose.Schema<Car>({
     accessories: [Object],
     passengers: { type: Number, required: true },
 },
-    {
-        timestamps: true,
-        versionKey: false
-    }
+    tableConfig
 );
 
 export default mongoose.model<Car>('Car', carSchema);
