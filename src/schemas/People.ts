@@ -7,7 +7,7 @@ interface People {
     cpf: string,
     birthDate: Date,
     email: string,
-    password: number,
+    password: string,
     licensed: licensedEnum
 }
 
@@ -16,7 +16,7 @@ const peopleSchema = new mongoose.Schema<People>({
     cpf: { type: String, required: true },
     birthDate: { type: Date, required: true },
     email: { type: String, required: true },
-    password: { type: Number, required: true },
+    password: { type: String, required: true },
     licensed: { type: String, required: true }
 },
     tableConfig
