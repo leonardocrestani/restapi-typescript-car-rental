@@ -9,7 +9,7 @@ type FindParamsType = {
     licensed?: string
 }
 
-type RegisterBodyType = {
+type RegisterUpdateParamsType = {
     name: string,
     cpf: string,
     birthDate: Date,
@@ -20,7 +20,11 @@ type RegisterBodyType = {
 
 interface IPeopleRepository {
     find(params: FindParamsType): Promise<object>
-    register(params: RegisterBodyType): Promise<object>
+    findById(id: string): Promise<object>
+    countPeoples(): Promise<number>
+    register(params: RegisterUpdateParamsType): Promise<object>
+    update(id: string, params: RegisterUpdateParamsType): Promise<object>
+    remove(id: string): Promise<number>
 }
 
-export { IPeopleRepository, FindParamsType, RegisterBodyType };
+export { IPeopleRepository, FindParamsType, RegisterUpdateParamsType };

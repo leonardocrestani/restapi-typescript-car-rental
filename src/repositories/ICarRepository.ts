@@ -18,8 +18,11 @@ type RegisterUpdateParamsType = {
 
 interface ICarRepository {
     find(params: FindParamsType): Promise<object>
+    findById(id: string): Promise<object>
+    countVehicles(): Promise<number>
     register(params: RegisterUpdateParamsType): Promise<object>
     update(id: string, params: RegisterUpdateParamsType): Promise<object>
+    remove(id: string): Promise<number>
 }
 
 export { ICarRepository, FindParamsType, RegisterUpdateParamsType };

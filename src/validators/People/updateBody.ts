@@ -5,13 +5,13 @@ import { licensedEnum } from '../../enums/licensedEnum';
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
         const schema = Joi.object({
-            name: Joi.string().trim().required(),
-            cpf: Joi.string().trim().required(),
-            birthDate: Joi.date().min(18).required(),
-            email: Joi.string().trim().email().required(),
-            password: Joi.string().min(6).trim().required(),
-            licensed: Joi.string().valid(...Object.values(licensedEnum)).required()
-        });
+            name: Joi.string().trim().optional(),
+            cpf: Joi.string().trim().optional(),
+            birthDate: Joi.date().optional(),
+            email: Joi.string().trim().email().optional(),
+            password: Joi.string().min(6).trim().optional(),
+            licensed: Joi.string().valid(...Object.values(licensedEnum)).optional()
+        }).min(1);
         const { error } = await schema.validate(req.body, { abortEarly: true });
         if (error) throw error
         return next();

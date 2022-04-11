@@ -51,7 +51,7 @@ class CarService {
         }
         const operation = await CarRepository.remove(id);
         if (!operation) {
-            throw new Error('Could not remove, client not found');
+            throw new Error('Could not remove, car not found');
         }
         return;
     }

@@ -12,10 +12,11 @@
   "author": "Leonardo Crestani",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.0",
+    "dotenv": "16.0.0",
     "express": "4.17.3",
+    "gerador-validador-cpf": "5.0.2",
     "joi": "17.6.0",
-    "moment": "^2.29.2",
+    "moment": "2.29.2",
     "mongoose": "6.2.9",
     "morgan": "1.10.0"
   },
