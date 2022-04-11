@@ -1,6 +1,7 @@
-import CarRepository from '../repositories/CarRepository';
-import { NotFound } from '../errors/NotFound';
 import mongoose from 'mongoose';
+import CarRepository from '../repositories/CarRepository';
+import NotFound from '../errors/NotFound';
+import UnprocessableEntity from '../errors/UnprocessableEntity';
 
 class CarService {
     public async find(params: any): Promise<object> {
@@ -14,7 +15,7 @@ class CarService {
     public async findById(id: string): Promise<object> {
         const isValid = mongoose.Types.ObjectId.isValid(id);
         if (!isValid) {
-            throw new Error('Id pattern does not match');
+            throw new UnprocessableEntity('Id pattern does not match');
         }
         const car = await CarRepository.findById(id);
         if (!car) {
@@ -33,7 +34,7 @@ class CarService {
     public async update(id: string, data: any): Promise<object> {
         const isValid = mongoose.Types.ObjectId.isValid(id);
         if (!isValid) {
-            throw new Error('Id pattern does not match');
+            throw new UnprocessableEntity('Id pattern does not match');
         }
         if (data.year < 1950 && data.year > 2022) {
             throw new Error('Invalid year');
@@ -48,7 +49,7 @@ class CarService {
     public async remove(id: string): Promise<void> {
         const isValid = mongoose.Types.ObjectId.isValid(id);
         if (!isValid) {
-            throw new Error('Id pattern does not match');
+            throw new UnprocessableEntity('Id pattern does not match');
         }
         const operation = await CarRepository.remove(id);
         if (!operation) {
