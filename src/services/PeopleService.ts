@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import PeopleRepository from '../repositories/PeopleRepository';
 import cpfValidator from '../utils/cpfValidator';
 import passwordValidator from '../utils/passwordValidatorString';
+import { NotFound } from '../errors/NotFound';
 
 class PeopleService {
     public async find(params: any): Promise<object> {
@@ -19,7 +20,7 @@ class PeopleService {
         }
         const people = await PeopleRepository.findById(id);
         if (!people) {
-            throw new Error('Informed people not found');
+            throw new NotFound('Informed people not found');
         }
         return people;
     }
@@ -52,7 +53,7 @@ class PeopleService {
         }
         const operation = await PeopleRepository.update(id, data);
         if (!operation) {
-            throw new Error('Could not update car');
+            throw new NotFound('Could not update car, car not found');
         }
         return await PeopleRepository.findById(id);
     }
@@ -64,7 +65,7 @@ class PeopleService {
         }
         const operation = await PeopleRepository.remove(id);
         if (!operation) {
-            throw new Error('Could not remove, client not found');
+            throw new NotFound('Could not remove, client not found');
         }
         return;
     }

@@ -1,4 +1,5 @@
 import CarRepository from '../repositories/CarRepository';
+import { NotFound } from '../errors/NotFound';
 import mongoose from 'mongoose';
 
 class CarService {
@@ -17,7 +18,7 @@ class CarService {
         }
         const car = await CarRepository.findById(id);
         if (!car) {
-            throw new Error('Informed car not found');
+            throw new NotFound('Informed car not found');
         }
         return car;
     }
@@ -39,7 +40,7 @@ class CarService {
         }
         const operation = await CarRepository.update(id, data);
         if (!operation) {
-            throw new Error('Could not update car');
+            throw new NotFound('Could not update car, car not found');
         }
         return await CarRepository.findById(id);
     }
@@ -51,7 +52,7 @@ class CarService {
         }
         const operation = await CarRepository.remove(id);
         if (!operation) {
-            throw new Error('Could not remove, car not found');
+            throw new NotFound('Could not remove, car not found');
         }
         return;
     }
