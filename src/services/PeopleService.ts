@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import PeopleRepository from '../repositories/PeopleRepository';
-import calculateAge from '../utils/calculateAge';
 import cpfValidator from '../utils/cpfValidator';
 import passwordValidator from '../utils/passwordValidatorString';
 
@@ -26,11 +25,6 @@ class PeopleService {
     }
 
     public async register(data: any): Promise<object> {
-        const date: [string, string, string] = data.birthDate.split('/');
-        const age = calculateAge(...date);
-        if (age < 18) {
-            throw new Error('User must have at least 18 years');
-        }
         if (passwordValidator(data.password)) {
             throw new Error('Password must have only numbers');
         }
@@ -45,14 +39,6 @@ class PeopleService {
         const isValid = mongoose.Types.ObjectId.isValid(id);
         if (!isValid) {
             throw new Error('Id pattern does not match');
-        }
-        if (data.birthDate) {
-            console.log("a")
-            const date: [string, string, string] = data.birthDate.split('/');
-            const age = calculateAge(...date);
-            if (age < 18) {
-                throw new Error('User must have at least 18 years');
-            }
         }
         if (data.password) {
             if (passwordValidator(data.password)) {
