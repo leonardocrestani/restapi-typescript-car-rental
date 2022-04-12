@@ -2,16 +2,16 @@ import mongoose from 'mongoose';
 import PeopleRepository from '../repositories/PeopleRepository';
 import cpfValidator from '../utils/cpfValidator';
 import passwordValidator from '../utils/passwordValidatorString';
+import calculateOffsets from '../utils/calculateOffsets';
 import NotFound from '../errors/NotFound';
 import UnprocessableEntity from '../errors/UnprocessableEntity';
 
 class PeopleService {
     public async find(params: any): Promise<object> {
-        const limit = parseInt(params.limit);
-        const offset = parseInt(params.offset);
+        const { limit, offset } = params;
         const peoples = await PeopleRepository.find(params);
         const total = { total: await PeopleRepository.countPeoples() };
-        const offsets = (Math.ceil(total.total / limit));
+        const offsets = calculateOffsets(limit, offset, total.total);
         const object = Object.assign({ peoples }, total, { limit, offset, offsets });
         return object;
     }

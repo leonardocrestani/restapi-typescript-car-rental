@@ -10,8 +10,8 @@ class CarRepository implements ICarRepository {
         return await CarSchema.findById(id);
     }
 
-    async countVehicles(): Promise<number> {
-        return await CarSchema.find().count();
+    async countVehicles({ ...param }): Promise<number> {
+        return await CarSchema.find(param).count();
     }
 
     async register(data: RegisterUpdateParamsType): Promise<object> {

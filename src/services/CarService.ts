@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import CarRepository from '../repositories/CarRepository';
+import calculateOffsets from '../utils/calculateOffsets';
 import NotFound from '../errors/NotFound';
 import UnprocessableEntity from '../errors/UnprocessableEntity';
 
@@ -7,8 +8,9 @@ class CarService {
     public async find(params: any): Promise<object> {
         const { limit, offset } = params;
         const vehicles = await CarRepository.find(params);
-        const total = { total: await CarRepository.countVehicles() };
-        const object = Object.assign({ vehicles }, total, { limit, offset });
+        const total = { total: await CarRepository.countVehicles(params) };
+        const offsets = calculateOffsets(limit, offset, total.total);
+        const object = Object.assign({ vehicles }, total, { limit, offset, offsets });
         return object;
     }
 
