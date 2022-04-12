@@ -17,8 +17,7 @@ class PeopleService {
     }
 
     public async findById(id: string): Promise<object> {
-        const isValid = mongoose.Types.ObjectId.isValid(id);
-        if (!isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
         }
         const people = await PeopleRepository.findById(id);
@@ -40,8 +39,7 @@ class PeopleService {
     }
 
     public async update(id: string, data: any): Promise<object> {
-        const isValid = mongoose.Types.ObjectId.isValid(id);
-        if (!isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
         }
         if (data.password) {
@@ -62,8 +60,7 @@ class PeopleService {
     }
 
     public async remove(id: string): Promise<void> {
-        const isValid = mongoose.Types.ObjectId.isValid(id);
-        if (!isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
         }
         const operation = await PeopleRepository.remove(id);

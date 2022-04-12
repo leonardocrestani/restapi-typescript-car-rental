@@ -15,8 +15,7 @@ class CarService {
     }
 
     public async findById(id: string): Promise<object> {
-        const isValid = mongoose.Types.ObjectId.isValid(id);
-        if (!isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
         }
         const car = await CarRepository.findById(id);
@@ -34,8 +33,7 @@ class CarService {
     }
 
     public async update(id: string, data: any): Promise<object> {
-        const isValid = mongoose.Types.ObjectId.isValid(id);
-        if (!isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
         }
         if (data.year < 1950 && data.year > 2022) {
@@ -49,8 +47,7 @@ class CarService {
     }
 
     public async remove(id: string): Promise<void> {
-        const isValid = mongoose.Types.ObjectId.isValid(id);
-        if (!isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
         }
         const operation = await CarRepository.remove(id);
