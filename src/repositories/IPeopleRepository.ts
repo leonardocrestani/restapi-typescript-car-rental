@@ -21,6 +21,7 @@ type RegisterUpdateParamsType = {
 interface IPeopleRepository {
     find(params: FindParamsType): Promise<object>
     findById(id: string): Promise<object>
+    findOne(params: object): Promise<object>
     countPeoples(): Promise<number>
     register(params: RegisterUpdateParamsType): Promise<object>
     update(id: string, params: RegisterUpdateParamsType): Promise<object>

@@ -10,6 +10,10 @@ class PeopleRepository implements IPeopleRepository {
         return await PeopleSchema.findById(id);
     }
 
+    async findOne(params: object): Promise<object> {
+        return await PeopleSchema.findOne(params).select('+password');
+    }
+
     async countPeoples(): Promise<number> {
         return await PeopleSchema.find().count();
     }

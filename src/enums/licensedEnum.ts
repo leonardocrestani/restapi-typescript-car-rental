@@ -1,6 +1,6 @@
 enum licensedEnum {
-    Yes = "yes",
-    No = "no"
+    YES = "yes",
+    NO = "no"
 };
 
 export { licensedEnum };
