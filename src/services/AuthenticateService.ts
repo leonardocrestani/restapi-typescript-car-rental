@@ -6,7 +6,6 @@ import authConfig from "../config/auth";
 class AuthenticateService {
 
     public async authenticate(email: string, password: string): Promise<object> {
-        console.log(email, password);
         const user: any = await PeopleRepository.findOne({ email: email, password: password });
         if (!user) {
             throw new NotFound('Could not authenticate, user not found');

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import tableConfig from '../config/tableConfig';
 import { licensedEnum } from '../enums/licensedEnum';
 
-interface People {
+interface IPeople {
     name: string,
     cpf: string,
     birthDate: Date,
@@ -11,7 +11,7 @@ interface People {
     licensed: licensedEnum
 }
 
-const peopleSchema = new mongoose.Schema<People>({
+const peopleSchema = new mongoose.Schema<IPeople>({
     name: { type: String, required: true },
     cpf: { type: String, required: true },
     birthDate: { type: Date, required: true },
@@ -22,4 +22,4 @@ const peopleSchema = new mongoose.Schema<People>({
     tableConfig
 );
 
-export default mongoose.model<People>('People', peopleSchema);
+export default mongoose.model<IPeople>('People', peopleSchema);

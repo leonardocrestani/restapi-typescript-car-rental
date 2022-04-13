@@ -5,7 +5,7 @@ interface Description {
     description: string;
 }
 
-interface Car extends Description {
+interface ICar extends Description {
     model: string,
     color: string,
     year: number,
@@ -13,7 +13,7 @@ interface Car extends Description {
     passengers: Number
 }
 
-const carSchema = new mongoose.Schema<Car>({
+const carSchema = new mongoose.Schema<ICar>({
     model: { type: String, required: true },
     color: { type: String, required: true },
     year: { type: Number, required: true },
@@ -23,4 +23,4 @@ const carSchema = new mongoose.Schema<Car>({
     tableConfig
 );
 
-export default mongoose.model<Car>('Car', carSchema);
+export default mongoose.model<ICar>('Car', carSchema);

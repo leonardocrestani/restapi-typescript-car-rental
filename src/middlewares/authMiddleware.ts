@@ -9,7 +9,6 @@ export default ((req: Request, res: Response, next: NextFunction) => {
         throw new Unauthorized('No token provided');
     }
     const [bearer, token] = authHeader.split(' ');
-    console.log(token);
     jwt.verify(token, authConfig.secret, (error: any) => {
         if (error) {
             throw new Unauthorized('Invalid token');

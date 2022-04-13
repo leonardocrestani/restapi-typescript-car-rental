@@ -1,16 +1,16 @@
 import PeopleSchema from '../schemas/People';
-import { IPeopleRepository, FindParamsType, RegisterUpdateParamsType } from './IPeopleRepository';
+import { IPeopleRepository, FindParamsType, FindOneParamsType, RegisterUpdateParamsType, PeopleType } from './IPeopleRepository';
 
 class PeopleRepository implements IPeopleRepository {
-    async find({ limit, offset }: FindParamsType): Promise<object> {
+    async find({ limit, offset }: FindParamsType): Promise<Array<PeopleType>> {
         return await PeopleSchema.find().select('-createdAt -updatedAt').limit(limit).skip(limit * (offset - 1));
     }
 
-    async findById(id: string): Promise<object> {
+    async findById(id: string): Promise<PeopleType> {
         return await PeopleSchema.findById(id);
     }
 
-    async findOne(params: object): Promise<object> {
+    async findOne(params: FindOneParamsType): Promise<PeopleType> {
         return await PeopleSchema.findOne(params).select('+password');
     }
 
@@ -18,11 +18,11 @@ class PeopleRepository implements IPeopleRepository {
         return await PeopleSchema.find().count();
     }
 
-    async register(data: RegisterUpdateParamsType): Promise<object> {
+    async register(data: RegisterUpdateParamsType): Promise<PeopleType> {
         return await PeopleSchema.create(data);
     }
 
-    async update(id: string, data: RegisterUpdateParamsType): Promise<object> {
+    async update(id: string, data: RegisterUpdateParamsType): Promise<PeopleType> {
         return await PeopleSchema.findOneAndUpdate({ _id: id }, data);
     }
 

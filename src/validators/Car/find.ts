@@ -11,7 +11,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             passengers: Joi.number().optional(),
             limit: Joi.number().required(),
             offset: Joi.number().required(),
-        }).xor('model', 'color', 'year', 'accessories', 'passengers');
+        });
         const { error } = await schema.validate(req.query, { abortEarly: true });
         if (error) throw error
         return next();
