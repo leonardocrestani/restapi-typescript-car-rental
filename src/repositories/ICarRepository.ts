@@ -1,33 +1,33 @@
 type FindParamsType = {
     limit: number;
     offset: number;
-    model?: String;
-    color?: String;
-    year?: Number;
-    accessories?: String
-    passengers?: Number,
+    model?: string;
+    color?: string;
+    year?: number;
+    accessories?: string
+    passengers?: number,
 }
 
 type RegisterUpdateParamsType = {
-    model: String,
-    color: String,
-    year: Number,
+    model: string,
+    color: string,
+    year: number,
     accessories: Array<object>,
-    passengers: Number
+    passengers: number
 }
 
 type CountRegistersType = {
-    model?: String,
-    color?: String,
-    year?: Number,
-    accessories?: Array<Object>,
-    passengers?: Number
+    model?: string,
+    color?: string,
+    year?: number,
+    accessories?: Array<object>,
+    passengers?: number
 }
 
 type CarType = {
     _id: object,
-    model: String,
-    color: String,
+    model: string,
+    color: string,
     year: Number,
     accessories: Array<object>,
     passengers: Number
@@ -35,11 +35,11 @@ type CarType = {
 
 interface ICarRepository {
     find(params: FindParamsType): Promise<Array<object>>
-    findById(id: String): Promise<CarType>
-    countVehicles(params: CountRegistersType): Promise<Number>
+    findById(id: string): Promise<CarType>
+    countVehicles(params: CountRegistersType): Promise<number>
     register(params: RegisterUpdateParamsType): Promise<CarType>
-    update(id: String, params: RegisterUpdateParamsType): Promise<CarType>
-    remove(id: String): Promise<Number>
+    update(id: string, params: RegisterUpdateParamsType): Promise<CarType>
+    remove(id: string): Promise<number>
 }
 
 export { ICarRepository, FindParamsType, RegisterUpdateParamsType, CarType };
