@@ -1,7 +1,6 @@
 import PeopleRepository from "../repositories/PeopleRepository";
 import NotFound from '../errors/NotFound';
-const jwt = require('jsonwebtoken');
-import authConfig from "../config/auth";
+import generateToken from '../utils/generateToken';
 
 class AuthenticateService {
 
@@ -10,7 +9,7 @@ class AuthenticateService {
         if (!user) {
             throw new NotFound('Could not authenticate, user not found');
         }
-        const token = jwt.sign({ id: user._id }, authConfig.secret, { expiresIn: 3600 });
+        const token = generateToken(user);
         return { email: user.email, licensed: user.licensed, token };
     }
 

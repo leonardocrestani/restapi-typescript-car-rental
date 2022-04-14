@@ -3,6 +3,7 @@ import PeopleRepository from '../repositories/PeopleRepository';
 import cpfValidator from '../utils/cpfValidator';
 import passwordValidator from '../utils/passwordValidatorString';
 import calculateOffsets from '../utils/calculateOffsets';
+import generateToken from '../utils/generateToken';
 import NotFound from '../errors/NotFound';
 import UnprocessableEntity from '../errors/UnprocessableEntity';
 
@@ -35,7 +36,9 @@ class PeopleService {
             throw new UnprocessableEntity('Invalid CPF');
         }
         const people = await PeopleRepository.register(data);
-        return people;
+        if (!people) throw new Error('Could not register');
+        const token = generateToken(people);
+        return { people, token };
     }
 
     public async update(id: string, data: any): Promise<object> {
