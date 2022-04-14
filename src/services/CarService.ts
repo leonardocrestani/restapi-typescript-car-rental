@@ -26,18 +26,16 @@ class CarService {
     }
 
     public async register(data: any): Promise<object> {
-        if (data.year < 1950 && data.year > 2022) {
-            throw new Error('Invalid year');
+        const car = await CarRepository.register(data);
+        if (!car) {
+            throw new Error('Could not register');
         }
-        return await CarRepository.register(data);
+        return car;
     }
 
     public async update(id: string, data: any): Promise<object> {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             throw new UnprocessableEntity('Id pattern does not match');
-        }
-        if (data.year < 1950 && data.year > 2022) {
-            throw new Error('Invalid year');
         }
         const operation = await CarRepository.update(id, data);
         if (!operation) {

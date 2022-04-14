@@ -27,7 +27,7 @@ class CarController {
         const data: object = req.body;
         try {
             const newCar = await CarService.register(data);
-            return res.status(202).json(newCar);
+            return res.status(201).json(newCar);
         }
         catch (error) {
             next(error);

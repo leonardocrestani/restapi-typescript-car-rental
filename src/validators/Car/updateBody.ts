@@ -6,7 +6,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         const schema = Joi.object({
             model: Joi.string().trim().optional(),
             color: Joi.string().trim().optional(),
-            year: Joi.number().optional(),
+            year: Joi.number().min(1950).max(2022).optional(),
             accessories: Joi.array().items(Joi.object({ description: Joi.string().trim().required() }).required()).unique('description').optional(),
             passengers: Joi.number().optional(),
         }).min(1);
