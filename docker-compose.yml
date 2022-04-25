@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  db:
+    container_name: db_container
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - my-db:/var/lib/mongodb
+    networks:
+      - node-app-network
+  app:
+    build: .
+    restart: always
+    container_name: api_container
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    networks:
+      - node-app-network
+networks:
+  node-app-network:
+    driver: bridge
+volumes:
+  my-db:
