@@ -13,7 +13,7 @@ interface ICar extends Description {
     passengers: Number
 }
 
-const carSchema = new mongoose.Schema<ICar>({
+const CarSchema = new mongoose.Schema<ICar>({
     model: { type: String, required: true },
     color: { type: String, required: true },
     year: { type: Number, required: true },
@@ -23,4 +23,4 @@ const carSchema = new mongoose.Schema<ICar>({
     tableConfig
 );
 
-export default mongoose.model<ICar>('Car', carSchema);
+export default mongoose.model<ICar>('Car', CarSchema);

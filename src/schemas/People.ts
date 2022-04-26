@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import tableConfig from '../config/tableConfig';
 import { licensedEnum } from '../enums/licensedEnum';
+import bcrypt from 'bcrypt';
 
 interface IPeople {
     name: string,
@@ -11,7 +12,7 @@ interface IPeople {
     licensed: licensedEnum
 }
 
-const peopleSchema = new mongoose.Schema<IPeople>({
+const PeopleSchema = new mongoose.Schema<IPeople>({
     name: { type: String, required: true },
     cpf: { type: String, required: true },
     birthDate: { type: Date, required: true },
@@ -22,4 +23,9 @@ const peopleSchema = new mongoose.Schema<IPeople>({
     tableConfig
 );
 
-export default mongoose.model<IPeople>('People', peopleSchema);
+PeopleSchema.pre('save', async function () {
+    const hashPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashPassword;
+});
+
+export default mongoose.model<IPeople>('People', PeopleSchema);
