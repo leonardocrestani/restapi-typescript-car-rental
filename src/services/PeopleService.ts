@@ -32,6 +32,10 @@ class PeopleService {
         if (passwordValidator(data.password)) {
             throw new UnprocessableEntity('Password must have only numbers');
         }
+        const exist = await PeopleRepository.findOne({ email: data.email });
+        if (exist) {
+            throw new Error('User already registered');
+        }
         if (!cpfValidator(data.cpf)) {
             throw new UnprocessableEntity('Invalid CPF');
         }
