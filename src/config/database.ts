@@ -4,7 +4,8 @@ dotenv.config({
 });
 
 const databaseConfig = {
-    host: process.env.DATABASE_HOST
+    host: process.env.DATABASE_HOST,
+    name: process.env.DATABASE_NAME
 }
 
 export default databaseConfig;

@@ -61,7 +61,7 @@ class PeopleService {
         }
         const operation = await PeopleRepository.update(id, data);
         if (!operation) {
-            throw new NotFound('Could not update car, car not found');
+            throw new NotFound('Could not update people, people not found');
         }
         return await PeopleRepository.findById(id);
     }

@@ -1,30 +1,30 @@
-# Car rental typescript API
+# Car rental TypeScript API
 
 ## Descrição do projeto
-<p> O projeto contempla a criação de uma REST api para uma empresa de aluguel de carros possuindo endpoints para cadastro de usuários e de carros feitos com paginação além disso possui endpoint para autenticação com token JWT, para a construção forma utilizadas ferramentas como NodeJS com TypeScript e express, para banco de dados mongoDB e docker </p>
+<p> O projeto contempla a criação de uma API REST para uma empresa de aluguel de carros possuindo endpoints para cadastro de usuários e de carros feitos com paginação além disso possui endpoint para autenticação com token JWT, para a construção foram utilizadas ferramentas como NodeJS com TypeScript e express, para banco de dados mongoDB e docker </p>
 
 ## Features
 ### Autenticação
 - Autenticação na aplicação com token JWT
 ### Clientes
 - Cadastro de um novo cliente
-    - Quando cliente novo for cadastrado vai receber o token de autenticação automaticamente
-    - O cliente sempre vai ter um campo se possui habilitação
+    - Quando um novo cliente for cadastrado vai receber o token de autenticação automaticamente
+    - O cliente sempre vai ter um campo se possui habilitação ou não
 - Listagem de todos os clientes cadastrados    
 - Listagem de um cliente pelo seu ID
 - Atualização dos dados de um cliente
 - Remoção de um cliente
 ### Carros
 - Cadastro de um novo carro
-    - O carro cadastrado precisa ter acessórios presentes
+    - O carro cadastrado sempre possui algum acessório presente
 - Listagem de todos os carros cadastrados
-- Listagem de um carro pesquisando por sua cor, modelo ou ano
+- Listagem de um carro pesquisando por sua cor, modelo, ano, acessório ou capacidade de passageiros
 - Listagem de um carro pelo seu ID
 - Atualização dos dados de um carro
 - Remoção de um carro
 
 ## Instalação com docker
-Criação do container
+Criação do container <br>
 Para crição do banco no docker é preciso trocar o DATABASE_HOST no arquivo .env.local para 'db'
 ```bash
 docker-compose up
@@ -44,7 +44,7 @@ Compilar o projeto <br>
 npm run build
 ```
 
-Executar aplicação
+Executar aplicação <br>
 Após a compilação o arquivo compilado de TS para JS vai ser criado e assim disponível para execução
 ```bash
 npm run start
@@ -59,19 +59,19 @@ npm run dev
 ## Endpoints
 
 ### Autenticação
-- (POST) Autentica '/api/v1/authenticate'
+- (POST) Autenticação '/api/v1/authenticate'
 
 ### Clientes
-- (POST) Cadastra '/api/v1/people'
-- (GET) Lista de todos registros '/api/v1/people?limit=&offset='
+- (POST) Cadastro '/api/v1/people'
+- (GET) Listagem de todos registros '/api/v1/people?limit=&offset='
 - (GET) Consulta pelo ID '/api/v1/people/{id}'
-- (PUT) Atualiza pelo ID '/api/v1/people/{id}'
-- (DELETE) Remove pelo ID '/api/v1/people/{id}'
+- (PUT) Atualização pelo ID '/api/v1/people/{id}'
+- (DELETE) Remoção pelo ID '/api/v1/people/{id}'
 
 ### Carros
-- (POST) Cadastra '/api/v1/car'
-- (GET) Lista todos os registros '/api/v1/car?limit=&offset='
-- (GET) Lista dos registros pela cor, modelo ou ano '/api/v1/car?limit=&offset=&color=&model=&year='
+- (POST) Cadastro '/api/v1/car'
+- (GET) Listagem todos os registros '/api/v1/car?limit=&offset='
+- (GET) Listagem dos registros pela cor, modelo, ano, acessórios e passageiros '/api/v1/car?limit=&offset=&color=&model=&year=&accessories=&passengers='
 - (GET) Consulta pelo ID '/api/v1/car/{id}'
-- (PUT) Atualiza pelo ID '/api/v1/car/{id}'
-- (DELETE) Remove pelo ID '/api/v1/car/{id}'
+- (PUT) Atualização pelo ID '/api/v1/car/{id}'
+- (DELETE) Remoção pelo ID '/api/v1/car/{id}'
