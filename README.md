@@ -56,6 +56,13 @@ npm run dev
 ```
 > A API estará disponível na URL http://localhost:3000
 
+## Testes
+Rodar testes
+```bash
+npm test
+```
+> Quando os testes forem rodados vai ser criado um banco de testes dentro do mongoDB e assim os testes realizados dentro dele
+
 ## Endpoints
 
 ### Autenticação
