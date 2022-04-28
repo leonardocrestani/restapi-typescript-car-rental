@@ -1,5 +1,10 @@
+import dotenv from 'dotenv';
+dotenv.config({
+    path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env.local',
+});
+
 const authConfig = {
-    secret: "020e60c6a84db8c5d4c2d56a4e4fe082"
+    secret: process.env.SECRET_KEY_JWT
 }
 
 export default authConfig;
