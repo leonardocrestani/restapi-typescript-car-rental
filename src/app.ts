@@ -7,7 +7,7 @@ import errorMiddleware from './middlewares/errorMiddleware';
 const app = express();
 
 mongoose.connect(`mongodb://${databaseConfig.host}:27017/${databaseConfig.name}`);
-mongoose.connection.once('open', () => { console.log('Connected DB'); }).on('error', (error) => { console.log(error.message); });
+mongoose.connection.once('open', () => { }).on('error', (error) => { console.log(error.message); });
 routes(app);
 app.use(errorMiddleware);
 
