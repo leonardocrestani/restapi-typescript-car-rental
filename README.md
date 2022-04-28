@@ -59,7 +59,7 @@ npm run dev
 ## Testes
 Rodar testes
 ```bash
-npm test
+npm run test
 ```
 > Quando os testes forem rodados vai ser criado um banco de testes dentro do mongoDB e assim os testes realizados dentro dele
 
