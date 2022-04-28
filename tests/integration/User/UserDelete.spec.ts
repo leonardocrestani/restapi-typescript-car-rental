@@ -3,7 +3,7 @@ import app from '../../../src/app';
 import mongoose from 'mongoose';
 import People from '../../../src/schemas/People';
 
-describe('Users GET', () => {
+describe('Users DELETE', () => {
 
     let token: string;
     let userId: string;

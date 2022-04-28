@@ -4,7 +4,7 @@ type FindParamsType = {
     model?: string;
     color?: string;
     year?: number;
-    accessories?: string
+    description?: string;
     passengers?: number,
 }
 

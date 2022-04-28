@@ -7,7 +7,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             model: Joi.string().trim().optional(),
             color: Joi.string().trim().optional(),
             year: Joi.number().optional(),
-            accessories: Joi.string().optional(),
+            description: Joi.string().optional(),
             passengers: Joi.number().optional(),
             limit: Joi.number().required(),
             offset: Joi.number().required(),

@@ -71,7 +71,7 @@ npm run dev
 ### Carros
 - (POST) Cadastro '/api/v1/car'
 - (GET) Listagem todos os registros '/api/v1/car?limit=&offset='
-- (GET) Listagem dos registros pela cor, modelo, ano, acessórios e passageiros '/api/v1/car?limit=&offset=&color=&model=&year=&accessories=&passengers='
+- (GET) Listagem dos registros pela cor, modelo, ano, acessórios e passageiros '/api/v1/car?limit=&offset=&color=&model=&year=&description=&passengers='
 - (GET) Consulta pelo ID '/api/v1/car/{id}'
 - (PUT) Atualização pelo ID '/api/v1/car/{id}'
 - (DELETE) Remoção pelo ID '/api/v1/car/{id}'
